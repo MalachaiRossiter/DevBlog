@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+//blog database with creator embedded to the user database 
 const BlogSchema = new mongoose.Schema({
     creator: {type: String, required: [true, "name is required"], minlength: [3, "creator musted be at least 3 characters long"]},
     title: {type: String, required: [true, "please provide a title for your post"], minlength: [3, "title must be at least 3 characters long"], maxlength: [50, "title must be no more than 50 characters long"]},
