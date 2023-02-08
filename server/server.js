@@ -1,8 +1,14 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
+const cookieParser = require('cookie-parser');
 
-app.use(cors());
+//saves special keys for security
+require('dotenv').config();
+
+//allows cookies to be based to server from localhost:3000
+app.use(cookieParser());
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
