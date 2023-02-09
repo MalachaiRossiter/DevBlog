@@ -6,13 +6,15 @@ module.exports.createUser = (req, res) => {
     .then(user => {
         const userToken = jwt.sign({
             id: user._id
-        }, process.env.process.env.FIRST_SECRET_KEY);
+        }, process.env.FIRST_SECRET_KEY);
 
         res.cookie("usertoken", userToken, {
             httpOnly: true
         })
         .json({ msg: "success!", user: user});
+        console.log(user);
     })
+    .catch(err => res.status(400).json(err));
 }
 
 module.exports.getUser = (req, res) => {

@@ -3,10 +3,17 @@ const bcrypt = require('bcrypt');
 
 //creating the User database with validations
 const UserSchema = new mongoose.Schema({
-    username: {type: String, required: [true, "a username is required to make an account"], minlength: [3, "your username must be at least 3 characters long"], index: {unique: [true, "Someone already has this username"]}},
+    username: {
+        type: String, 
+        required: [true, "a username is required to make an account"], 
+        minlength: [3, "your username must be at least 3 characters long"], 
+        unique: [true, "Someone already has this username"]
+    },
     
     //email with validations using Regex
-    email: {type: String, required: [true, "an email is required to make an account"], 
+    email: {
+        type: String, 
+        required: [true, "an email is required to make an account"], 
         validate: {validator: val => /^([\w-\.]+@([\w-]+\.)+[\w-]+)?$/.test(val),
         message: "Please enter a valid email"}},
 
@@ -20,9 +27,9 @@ UserSchema.virtual('confirmPassword')
 
 //checks if password and confirmedPassword match
 UserSchema.pre('validate', function(next) {
-    if (this.password !== this._confirmPassword) {
-        this.invalidate('confirmPassword', 'Password must match confirm password');
-    }
+    if (this.password !== this.confirmPassword) {
+            const validationError = this.invalidate('confirmPassword', 'Password must match confirm password');
+    };
     next();
 });
 

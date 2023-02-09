@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 //saves special keys for security
 require('dotenv').config();
 
+
 //allows cookies to be based to server from localhost:3000
 app.use(cookieParser());
 app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
