@@ -1,20 +1,19 @@
 const User = require("../models/user.model");
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 module.exports.createUser = (req, res) => {
     User.create(req.body)
     .then(user => {
-        const userToken = jwt.sign({
-            id: user._id
-        }, process.env.FIRST_SECRET_KEY);
-
-        res.cookie("usertoken", userToken, {
-            httpOnly: true
-        })
-        .json({ msg: "success!", user: user});
-        console.log(user);
+        const payload = {_id: user._id, email: user.email, username: user.username}
+        const userToken = jwt.sign(payload, process.env.FIRST_SECRET_KEY);
+        res.cookie("usertoken", userToken, {expires: new Date(Date.now() + 9000000)})
+        .json({ msg: "cookie obtained!", user: payload});
     })
-    .catch(err => res.status(400).json(err));
+    .catch(err => {
+        console.log("string", err);
+        res.status(400).json(err)
+    });
 }
 
 module.exports.getUser = (req, res) => {
@@ -46,24 +45,25 @@ module.exports.deleteUser = (req,res) => {
 
 module.exports.login = async(req, res) => {
     const user = await User.findOne({ email: req.body.email});
-    if(user === null) {
-        return res.sendStatus(400);
+    console.log('logging in: ' + user)
+    try{
+        if(user === null) {
+            return res.status(400).json({errors: 'Email not found'});
+        } else {
+            const correctPassword = await bcrypt.compare(req.body.password, user.password);
+            console.log("I made it this far");
+            if(!correctPassword){
+                return res.status(400).json({errors: 'Invalid password/email'});
+            } else {
+                const payload = {_id: user._id, email: user.email, username: user.username}
+                const userToken = jwt.sign(payload, process.env.FIRST_SECRET_KEY);
+                res.cookie("usertoken", userToken, {expires: new Date(Date.now() + 9000000)})
+                .json({ msg: "cookie obtained!", user: payload});
+            }
+        }   
+    } catch (err) {
+        res.status(400).json({errors: 'oops something went wrong when logging in'})
     }
-
-    const correctPassword = await bcrypt.compair(req.body.password, user.password);
-
-    if(!correctPassword){
-        return res.sendStatus(400);
-    }
-
-    const userToken = jwt.sign({
-        id: user._id
-    }, process.env.FIRST_SECRET_KEY);
-
-    res.cookie("usertoken", userToken, {
-        httpOnly: true
-    })
-    .json({ msg: "cookie obtained!"});
 }
 
 module.exports.logout = (req, res) => {

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+var uniqueValidator = require('mongoose-unique-validator');
 
 //creating the User database with validations
 const UserSchema = new mongoose.Schema({
@@ -15,10 +16,14 @@ const UserSchema = new mongoose.Schema({
         type: String, 
         required: [true, "an email is required to make an account"], 
         validate: {validator: val => /^([\w-\.]+@([\w-]+\.)+[\w-]+)?$/.test(val),
-        message: "Please enter a valid email"}},
+        message: "Please enter a valid email"},
+        unique: [true, "Someone already has this username"]
+    },
 
     password: {type: String, required: [true, "a password is required to make an account"]},
 }, {timestamps: true});
+
+UserSchema.plugin(uniqueValidator, {message: `{PATH} must be unique`});
 
 //creats a temporary space for confirmed password
 UserSchema.virtual('confirmPassword')

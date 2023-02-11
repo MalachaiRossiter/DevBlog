@@ -1,5 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
+  background-color: #222222;
+  color: #fff;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -10,4 +16,118 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/*
+------- content key ------- 
+1.navbar
+2.Login/SignUp
+*/
+
+/* ------ 1. NavBar ------- */
+.navbar-container{
+  width: 100%;
+  background-color: #111;
+  border-bottom: solid #ff7373 1px;
+  position: absolute;
+}
+
+.navbar{
+  width: 75%;
+  margin: 0 auto;
+  padding: 5px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.link-container{
+  display: flex;
+  align-items: center;
+}
+
+.link-item{
+  margin-left: 20px;
+}
+
+.signup {
+  padding: 10px 20px;
+  color: #ff7373;
+  border: solid #ff7373 2px;
+  border-radius: .5rem;
+}
+
+.logo {
+  margin-right: auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  color: #111;
+  font-family: 'Nanum Gothic Coding', monospace;
+  background-color: #fff;
+  border-radius: .5rem;
+}
+
+/* ------ 2. Login/SignUp ------ */
+
+.full-container{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container{
+  width: 30%;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  background-color: #111;
+  border: #1a1a1a solid 2px;
+  border-radius: .5rem;
+}
+
+.login-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #ff7373;
+}
+
+.login-header h1{
+  font-size: 40px;
+  font-weight: 700;
+  font-family: 'Nanum Gothic Coding', monospace;
+}
+
+.form-row {
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row input{
+  padding: 0px 5px;
+  background-color: rgba(255, 255, 255, 0);
+  border: #3f3f3f solid 2px;
+  border-radius: .5rem;
+}
+
+.submit-btn{
+  width: 100%;
+  margin: 10px 0px;
+  padding: 5px;
+  background-color: #3f3f3f;
+  border-radius: .5rem;
+}
+
+.login-form{
+  border-bottom: solid #3f3f3f 1px;
+}
+
+.bottom-txt{
+  margin: 20px auto 0px auto;
+}
+
+.login-container span {
+  color: #57ffa3;
 }
