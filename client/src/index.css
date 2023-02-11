@@ -9,6 +9,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  line-height: 1.75rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -22,6 +23,7 @@ code {
 ------- content key ------- 
 1.navbar
 2.Login/SignUp
+3.Display All
 */
 
 /* ------ 1. NavBar ------- */
@@ -130,4 +132,60 @@ code {
 
 .login-container span {
   color: #57ffa3;
+}
+
+/* ------ 3. Display All ------*/
+
+.display-container{
+  width: 75%;
+  padding-top: 15vh;
+  margin: 0 auto;
+}
+
+.row{
+  display: flex;
+}
+
+.col-1 {
+  width: 25%;
+}
+
+.col-2 {
+  width: 50%;
+}
+
+.col-3 {
+  width: 25%;
+}
+
+.blog-container{
+  padding: 2.5%;
+  height: 30vh;
+  margin-bottom: 20px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  background-color: #111;
+  border-radius: 0.5rem;
+}
+
+.blog-container h2{
+  color:#ff7373;
+  font-size: 16px;
+  font-family: 'Nanum Gothic Coding', monospace;
+  font-weight: 400;
+}
+
+.blog-container h1{
+  padding: 10px 0px;
+  color: #57ffa3;
+  font-size: 40px;
+  font-family: 'Nanum Gothic Coding', monospace;
+  font-weight: bold;
+}
+
+.blog-container p{
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
