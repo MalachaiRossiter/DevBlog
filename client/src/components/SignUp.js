@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 const SignUp = (props) => {
 
+    const {loggedIn, setLoggedIn} = props;
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -18,8 +19,8 @@ const SignUp = (props) => {
         axios.post('http://localhost:8000/api/user/', newAccount, {withCredentials:true}
         )
         .then(res => {
-            console.log(res);
             console.log(res.data);
+            setLoggedIn(true);
             navigate('/');
         })
         .catch((err) => {

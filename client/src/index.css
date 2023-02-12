@@ -160,12 +160,15 @@ code {
 
 .blog-container{
   padding: 2.5%;
-  height: 30vh;
   margin-bottom: 20px;
-  text-overflow: ellipsis;
-  overflow: hidden;
   background-color: #111;
   border-radius: 0.5rem;
+}
+
+.blog-main {
+  height: 20vh;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .blog-container h2{
@@ -183,9 +186,21 @@ code {
   font-weight: bold;
 }
 
-.blog-container p{
+.blog-main-p{
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.blog-single {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.create-btn{
+  padding: 10px 20px;
+  color: #111;
+  background-color: #ff7373;
+  border-radius: 0.5rem;
 }

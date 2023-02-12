@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 const Login = (props) => {
 
+    const {loggedIn, setLoggedIn} = props;
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
@@ -13,11 +14,10 @@ const Login = (props) => {
         e.preventDefault();
         const loginDetails = ({email, password})
         console.log(loginDetails);
-        axios.post('http://localhost:8000/api/user/login', loginDetails, {withCredentials:true}
-        )
+        axios.post('http://localhost:8000/api/user/login', loginDetails, {withCredentials: true})
         .then(res => {
             console.log(res);
-            console.log(res.data);
+            setLoggedIn(true);
             navigate('/');
         })
         .catch((err) => {

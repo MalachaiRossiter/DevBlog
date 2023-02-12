@@ -1,13 +1,14 @@
 const User = require("../models/user.model");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const secret = "banana";
 
 module.exports.createUser = (req, res) => {
     User.create(req.body)
     .then(user => {
         const payload = {_id: user._id, email: user.email, username: user.username}
         const userToken = jwt.sign(payload, process.env.FIRST_SECRET_KEY);
-        res.cookie("usertoken", userToken, {expires: new Date(Date.now() + 9000000)})
+        res.cookie("usertoken", userToken, {expires: new Date(Date.now() + 9000000), httpOnly: true})
         .json({ msg: "cookie obtained!", user: payload});
     })
     .catch(err => {
@@ -57,7 +58,7 @@ module.exports.login = async(req, res) => {
             } else {
                 const payload = {_id: user._id, email: user.email, username: user.username}
                 const userToken = jwt.sign(payload, process.env.FIRST_SECRET_KEY);
-                res.cookie("usertoken", userToken, {expires: new Date(Date.now() + 9000000)})
+                res.cookie("usertoken", userToken, {expires: new Date(Date.now() + 9000000), httpOnly: true})
                 .json({ msg: "cookie obtained!", user: payload});
             }
         }   
@@ -68,5 +69,17 @@ module.exports.login = async(req, res) => {
 
 module.exports.logout = (req, res) => {
     res.clearCookie('usertoken');
+    console.log("succesffuly logged out");
     res.sendStatus(200);
+}
+
+module.exports.secret = secret;
+module.exports.loginCheck = (req, res) => {
+    jwt.verify(req.cookies.usertoken, secret, (err, payload) => {
+        if (err) { 
+            res.status(401).json({verified: false});
+        } else {
+            res.status(200).json({msg: "logged in"})
+        }
+    });
 }
