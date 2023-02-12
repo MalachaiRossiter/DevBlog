@@ -24,6 +24,7 @@ code {
 1.navbar
 2.Login/SignUp
 3.Display All
+4.User Blog
 */
 
 /* ------ 1. NavBar ------- */
@@ -114,6 +115,13 @@ code {
   border-radius: .5rem;
 }
 
+.form-row textarea{
+  padding: 0px 5px;
+  background-color: rgba(255, 255, 255, 0);
+  border: #3f3f3f solid 2px;
+  border-radius: .5rem;
+}
+
 .submit-btn{
   width: 100%;
   margin: 10px 0px;
@@ -166,7 +174,6 @@ code {
 }
 
 .blog-main {
-  height: 20vh;
   text-overflow: ellipsis;
   overflow: hidden;
 }
@@ -181,6 +188,7 @@ code {
 .blog-container h1{
   padding: 10px 0px;
   color: #57ffa3;
+  line-height: 3rem;
   font-size: 40px;
   font-family: 'Nanum Gothic Coding', monospace;
   font-weight: bold;
@@ -203,4 +211,24 @@ code {
   color: #111;
   background-color: #ff7373;
   border-radius: 0.5rem;
+}
+
+/* ------ 4. User Blog ------ */
+
+.options-container{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.creator {
+  margin-right: auto;
+}
+
+.edit {
+  padding: 0px 20px;
+  color:#57ffa3;
+}
+
+.delete {
+  color:#ff7373;
 }

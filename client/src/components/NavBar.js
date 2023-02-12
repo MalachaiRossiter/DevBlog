@@ -25,7 +25,7 @@ const NavBar = (props) => {
                     {loggedIn ? (
                     <div className='link-container'>
                         <Link onClick={onClickHandler} className='link-item'><h2>Logout</h2></Link>
-                        <Link to={"/signUp"} className='link-item signup'><h2>View Your Blogs</h2></Link>
+                        <Link to={"/UserBlogs"} className='link-item signup'><h2>View Your Blogs</h2></Link>
                     </div>
                     ) : (
                     <div className='link-container'>
