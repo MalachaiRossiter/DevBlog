@@ -41,7 +41,7 @@ module.exports.updateBlog = (req,res) => {
     Blog.findById({_id: req.params.id})
     .then(blog => {
         if (blog.creator == user.username){
-            Blog.findOneAndUpdate({_id: req.params.id}, req.body, {new:true, reValidators: true})
+            Blog.findOneAndUpdate({_id: req.params.id}, req.body, {new:true, runValidators: true})
             .then(updatedBlog => res.json(updatedBlog))
             .catch(err => res.status(400).json(err));
         }

@@ -38,7 +38,7 @@ const CreateBlog = (props) => {
         <div className="display-container">
             <div className="blog-container blog-single">
                 <h1>Create A New Blog!</h1>
-                {errors.map((err, index) => <p key={index} className="error">{err}</p>)}
+                {errors.map((err, index) => <p key={index} className="errors">{err}</p>)}
                 <form onSubmit={onSubmitHandler} className="login-form">
                     <div className='form-row'>
                         <label>Title</label>
