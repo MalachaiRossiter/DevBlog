@@ -18,3 +18,6 @@ require('./routes/blog.route')(app);
 require('./routes/user.route')(app);
 
 app.listen(8000, () => console.log(`Listening on port: 8000`));
+
+//node modules: bcrypt, cookie-parser, cors, dotenv, express, jsonwebtoken, mongoose,
+// mongoose-mongoose-unique-validator
