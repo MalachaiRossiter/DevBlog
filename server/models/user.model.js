@@ -23,6 +23,7 @@ const UserSchema = new mongoose.Schema({
     password: {type: String, required: [true, "a password is required to make an account"]},
 }, {timestamps: true});
 
+//creates unique validator which can be sent to front end for display
 UserSchema.plugin(uniqueValidator, {message: `{PATH} must be unique`});
 
 //creats a temporary space for confirmed password

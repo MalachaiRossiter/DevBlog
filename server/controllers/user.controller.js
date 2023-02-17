@@ -1,7 +1,7 @@
-const User = require("../models/user.model");
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const secret = "banana";
+const User = require("../models/user.model");// user model
+const jwt = require('jsonwebtoken'); //token used for storing cookie
+const bcrypt = require('bcrypt'); //used for password hashing
+const secret = "banana"; //secret key for token
 
 module.exports.createUser = (req, res) => {
     User.create(req.body)
