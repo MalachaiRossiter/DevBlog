@@ -26,8 +26,7 @@ const UpdateBlog = (props) => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        if (loggedIn) {
-            axios.put(`http://localhost:8000/api/blog/${id}`, {title, body}, {withCredentials: true})
+        axios.put(`http://localhost:8000/api/blog/${id}`, {title, body}, {withCredentials: true})
             .then( res => {
                 console.log(res.data);
                 navigate(`/blog/${id}`);
@@ -40,11 +39,7 @@ const UpdateBlog = (props) => {
                     errorArr.push(errorResponse[key].message)
                 }
                 setErrors(errorArr);
-            });
-        } else {
-            console.log(loggedIn);
-            navigate('/login');
-        }
+        });
     }
 
     return (

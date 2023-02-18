@@ -20,17 +20,16 @@ const Login = (props) => {
             setLoggedIn(true);
             navigate('/');
         })
-        .catch((err) => {
-            console.log(err);
+        .catch(err => {
             const errorResponse = err.response.data.errors;
             console.log(errorResponse);
-            const errorArr = [];
-            for (const key of Object.keys(errorResponse)) {
-                errorArr.push(errorResponse[key].message)
-            }
-            setErrors(errorArr);
+            // const errorArr = [];
+            // for (const key of Object.keys(errorResponse)){
+            //     errorArr.push(errorResponse[key].message)
+            // }
+            setErrors(errorResponse);
             console.log(errors);
-        });
+        })
     }
 
     return(
@@ -38,7 +37,8 @@ const Login = (props) => {
             <div className="login-container">
                 <div className='login-header'>
                     <h1>Log In!</h1>
-                    {errors.map((err, index) => <p key={index} className="error">{err}</p>)}
+                    {/* {errors.map((err, index) => <p key={index} className="error">{err}</p>)} */}
+                    {(errors) ? <p className="error"> {errors} </p> : null} 
                 </div>
                 <form onSubmit={onSubmitHandler} className="login-form">
                     <div className='form-row'>

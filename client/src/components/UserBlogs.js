@@ -4,7 +4,6 @@ import {Link, useNavigate} from 'react-router-dom';
 
 const UserBlogs = (props) => {
     const [blogList, setBlogList] = useState([]);
-    const {loggedIn, setLoggedIn} = props;
 
     const navigate = useNavigate();
 
@@ -34,11 +33,7 @@ const UserBlogs = (props) => {
         <div className="display-container">
             <div className="row">
                 <div className="col-1">
-                {loggedIn ? (
                     <Link to={'/create'} className={'create-btn'}>Create A Post!</Link>
-                    ) : (
-                    <Link to={'/login'} className={'create-btn'}>Create A Post!</Link>
-                )}
                 </div>
                 <div className="col-2">
                     {

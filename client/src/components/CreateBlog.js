@@ -13,7 +13,6 @@ const CreateBlog = (props) => {
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
-        if (loggedIn) {
             axios.post(`http://localhost:8000/api/blog`, {title, body}, {withCredentials: true})
             .then( res => {
                 console.log(res.data);
@@ -28,10 +27,6 @@ const CreateBlog = (props) => {
                 }
                 setErrors(errorArr);
             });
-        } else {
-            console.log(loggedIn);
-            navigate('/login');
-        }
     }
 
     return (

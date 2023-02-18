@@ -10,6 +10,7 @@ import DisplayBlog from './components/DisplayBlog';
 import CreateBlog from './components/CreateBlog';
 import UserBlogs from './components/UserBlogs';
 import UpdateBlog from './components/UpdateBlog';
+import ProtectedRoute from './components/ProtectedRoute';
 
 
 function App() {
@@ -28,21 +29,21 @@ function App() {
       console.log(err);
       setLoggedIn(false);
     });
-  }, [])
+  }, [loggedIn])
 
   return (
     <div className="App">
       <BrowserRouter>
         <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
-          <Routes>
-            <Route element={<DisplayAll loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} path="/" default/>
-            <Route element={<SignUp  loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} path="/signUp"/>
-            <Route element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} path="/login"/>
-            <Route element={<DisplayBlog/>} path="/blog/:id"/>
-            <Route element={<UpdateBlog loggedIn={loggedIn}/>} path="/blog/edit/:id"/>
-            <Route element={<CreateBlog  loggedIn={loggedIn}/>} path="/create"/>
-            <Route element={<UserBlogs loggedIn={loggedIn}/>} path="/userBlogs"/>
-          </Routes>
+        <Routes>
+          <Route path="/" element={<DisplayAll loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} default />
+          <Route path="/signUp" element={<SignUp loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
+          <Route path="/login" element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
+          <Route path="/blog/:id" element={<DisplayBlog/>} />
+          <Route path="/blog/edit/:id" element={<ProtectedRoute loggedIn={loggedIn}><UpdateBlog/></ProtectedRoute>}/>
+          <Route path="/create" element={<ProtectedRoute loggedIn={loggedIn}><CreateBlog/></ProtectedRoute>}/>
+          <Route path="/userBlogs" element={<ProtectedRoute loggedIn={loggedIn}><UserBlogs/></ProtectedRoute>}/>
+        </Routes>
       </BrowserRouter>
     </div>
   );
