@@ -21,13 +21,15 @@ const Login = (props) => {
             navigate('/');
         })
         .catch((err) => {
-            console.log(err)
+            console.log(err);
             const errorResponse = err.response.data.errors;
+            console.log(errorResponse);
             const errorArr = [];
             for (const key of Object.keys(errorResponse)) {
                 errorArr.push(errorResponse[key].message)
             }
             setErrors(errorArr);
+            console.log(errors);
         });
     }
 
