@@ -21,6 +21,7 @@ const DisplayAll = (props) => {
         <div className="display-container">
             <div className="row">
                 <div className="col-1">
+                    {/* Checks logged in and either returns the create form or redirects to login */}
                 {loggedIn ? (
                     <Link to={'/create'} className={'create-btn'}>Create A Post!</Link>
                     ) : (

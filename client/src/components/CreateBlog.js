@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router-dom';
 
 const CreateBlog = (props) => {
     
-    const {loggedIn} = props;
     const [title, setTitle] = useState("");
     const [body, setBody] = useState("");
     const [errors, setErrors] = useState([]);
 
     const navigate = useNavigate();
 
+        // submit handler takes credentials and body of from and sends axios request to create blog
     const onSubmitHandler = (e) => {
         e.preventDefault();
             axios.post(`http://localhost:8000/api/blog`, {title, body}, {withCredentials: true})

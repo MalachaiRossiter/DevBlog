@@ -12,6 +12,7 @@ const DisplayBlog = (props) => {
     const [body, setBody] = useState("");
 
     useEffect(() => {
+        //sends axios get request to find the blog via id
         axios.get(`http://localhost:8000/api/blog/${id}`)
         .then((res) => {
             console.log(res.data);

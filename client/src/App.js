@@ -15,6 +15,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
 
+  // checks if the user is logged in to change states of items
   const [loggedIn, setLoggedIn] = useState(false);
   useEffect(() => {
     axios.post('http://localhost:8000/api/user/loginCheck', {}, {withCredentials: true})
@@ -40,6 +41,8 @@ function App() {
           <Route path="/signUp" element={<SignUp loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
           <Route path="/login" element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>} />
           <Route path="/blog/:id" element={<DisplayBlog/>} />
+
+          {/* Protected routes using the Protected Route Component */}
           <Route path="/blog/edit/:id" element={<ProtectedRoute loggedIn={loggedIn}><UpdateBlog/></ProtectedRoute>}/>
           <Route path="/create" element={<ProtectedRoute loggedIn={loggedIn}><CreateBlog/></ProtectedRoute>}/>
           <Route path="/userBlogs" element={<ProtectedRoute loggedIn={loggedIn}><UserBlogs/></ProtectedRoute>}/>
