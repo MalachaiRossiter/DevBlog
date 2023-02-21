@@ -11,6 +11,7 @@ const Login = (props) => {
     const navigate = useNavigate();
 
     const onSubmitHandler = (e) => {
+        //Takes login cridentials and sends axios call to login, returns to dashboard if sucessful. Prints errors if not
         e.preventDefault();
         const loginDetails = ({email, password})
         console.log(loginDetails);
