@@ -8,6 +8,7 @@ const UserBlogs = (props) => {
     const navigate = useNavigate();
 
     useEffect(() => {
+        // Gets creator blogs on page load
         axios.post('http://localhost:8000/api/blog/creator', {}, {withCredentials: true})
         .then(res => {
             setBlogList(res.data);
@@ -17,6 +18,7 @@ const UserBlogs = (props) => {
     )
 
     const deleteBlog = (_id) => {
+        // with the user blog id, deletes the user blog
         axios.delete(`http://localhost:8000/api/blog/${_id}`, {withCredentials: true})
         .then(res => {
             console.log(res);

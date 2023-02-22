@@ -25,6 +25,7 @@ const UpdateBlog = (props) => {
     }, []);
 
     const onSubmitHandler = (e) => {
+        // Sends axios request with form body and cookie to the update blog controller
         e.preventDefault();
         axios.put(`http://localhost:8000/api/blog/${id}`, {title, body}, {withCredentials: true})
             .then( res => {
