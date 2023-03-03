@@ -1,6 +1,6 @@
 # DevBlog
 
-### This was the final solo project for Coding Dojo. It is a MERN Project that I did to deminstrate Full CRUD capabilities as well as a one to many relationship with MongoDB. This project also has rerouting if the user is not logged in and other authentication features
+This was the final solo project for Coding Dojo. It is a MERN Project that I did to deminstrate Full CRUD capabilities as well as a one to many relationship with MongoDB. This project also has rerouting if the user is not logged in and other authentication features
 ![Dashboard](https://user-images.githubusercontent.com/107493462/222792693-99f460f9-b33f-47d0-8b78-9910ed0aba56.png)
 
 ## Without logging in you are able to see each users blog post
